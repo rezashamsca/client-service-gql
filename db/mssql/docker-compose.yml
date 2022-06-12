@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  mssql:
+    image: rtecsoft/demo-customer-mssql:v1
+    ports:
+      - "1433:1433"
+    volumes:
+      - ~/Projects/client-service-gql/db/mssql/data:/var/lib/mssqlql/data
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong(!)Password
