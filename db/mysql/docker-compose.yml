@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/Projects/client-service-gql/db/mysql/data:/var/lib/mysqlql/data
+    environment:
+      - MYSQL_ROOT_PASSWORD=yourStrong(!)Password
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true

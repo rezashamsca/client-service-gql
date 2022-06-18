@@ -1,0 +1,4 @@
+oc login --token=sha256<token_here> --server=<sandbox_url>
+oc create -f https://raw.githubusercontent.com/redhat-developer/s2i-dotnetcore-persistent-ex/dotnetcore-3.1-mssql/openshift/mssql2019.json
+oc process --parameters mssql2019
+oc new-app --template=mssql2019 -p NAME='mssql-client-service-api' -p VOLUME_CAPACITY=2Gi -p ACCEPT_EULA=Y -p SA_PASSWORD='yourStrong(!)Password'
