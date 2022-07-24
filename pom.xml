@@ -10,13 +10,25 @@
 	</parent>
 	<groupId>com.rtecsoft</groupId>
 	<artifactId>client-service-gql</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.4</version>
 	<name>client-service-gql</name>
 	<description>Simple Client Service for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<resilience4j.version>1.7.1</resilience4j.version>
+		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -34,13 +46,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-graphql</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-kubernetes-fabric8-all</artifactId>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-spring-boot2 -->
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
 			<artifactId>resilience4j-spring-boot2</artifactId>
-			<version>${resilience4j.version}</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>

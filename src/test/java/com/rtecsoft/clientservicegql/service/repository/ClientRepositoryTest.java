@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import reactor.core.publisher.Flux;
@@ -23,6 +24,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
+@EnableJpaRepositories
 class ClientRepositoryTest {
     @Autowired
     private ClientService clientService;
@@ -39,11 +42,10 @@ class ClientRepositoryTest {
 
     @Test
     public void TestSelect() {
-        final String uuidString = "6eb45970-e151-9f4e-b8c0-be8e1c56ef6e";
-        UUID uuid = UUID.fromString(uuidString);
-        Optional<Client> client = this.clientService.findById(uuid);
+        final String name = "Bill Gates";
+        Optional<Client> client = this.clientService.findByName(name);
         assertThat(client.isEmpty()).isFalse();
         Client value = client.get();
-        assertThat(value.getName()).isEqualTo("Bill Gates");
+        assertThat(value.getName()).isEqualTo(name);
     }
 }
