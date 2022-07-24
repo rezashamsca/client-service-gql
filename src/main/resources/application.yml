@@ -1,0 +1,13 @@
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+management:
+  endpoint:
+    restart:
+      enabled: true
+    health:
+      enabled: true
+    info:
+      enabled: true

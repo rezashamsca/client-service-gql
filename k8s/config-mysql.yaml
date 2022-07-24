@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: client-service-gql-configmap-mysql
+  labels:
+    environment: dev
+    app: client-service-gql
+data:
+  application.yml: |-
+    spring:
+      datasource:
+        url: ${MYSQL_URL:jdbc:mysql://localhost/ClientDb}
+        username: ${MYSQL_USER:clientdb_user}
+        password: ${MYSQL_PASS:yourStrong(!)Password}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+      jpa:
+        show-sql: true
+        hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+        database-platform: org.hibernate.dialect.MySQL8Dialect

@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/Projects/client-service-gql/db/mysql/data:/var/lib/mysqlql/data
+    environment:
+      - MYSQL_ROOT_PASSWORD=yourStrong(!)Password
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+  client-service-gql:
+    image: rtecsoft/client-service-gql:0.0.2
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=mysql
+      - MYSQL_URL=jdbc:mysql://mysql/ClientDb
+      - MYSQL_USER=clientdb_user
+      - MYSQL_PASS=yourStrong(!)Password
+    depends_on:
+      - mysql

@@ -1,0 +1,14 @@
+spring:
+    application:
+        name: client-service-gql
+    cloud:
+        kubernetes:
+            reload:
+                enabled: true
+                mode: polling
+                period: 5000
+            config:
+                namespace: client-service-ns-dev
+                sources:
+                    - name: client-service-gql-configmap-mysql
+

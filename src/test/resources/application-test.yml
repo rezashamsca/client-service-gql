@@ -1,0 +1,32 @@
+spring:
+  active:
+    profile: test
+---
+spring:
+  config:
+    activate:
+#      on-profile: local-mysql
+      on-profile: test
+  datasource:
+    url: ${MYSQL_URL:jdbc:mysql://localhost/ClientDb}
+    username: ${MYSQL_USER:clientdb_user}
+    password: ${MYSQL_PASS:yourStrong(!)Password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+---
+spring:
+  config:
+    activate:
+      on-profile: local-mssql
+  datasource:
+    url: ${MSSQL_URL:jdbc:sqlserver://localhost;databaseName=ClientDB;TrustServerCertificate=True;Encrypt=false}
+    username: ${MSSQL_USER:sa}
+    password: ${MSSQL_PASS:yourStrong(!)Password}
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate.dialect: org.hibernate.dialect.SQLServer2016Dialect
+    database-platform: org.hibernate.dialect.SQLServer2016Dialect
