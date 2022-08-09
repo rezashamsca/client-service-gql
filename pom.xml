@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.rtecsoft</groupId>
 	<artifactId>client-service-gql</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 	<name>client-service-gql</name>
 	<description>Simple Client Service for Spring Boot</description>
 	<properties>

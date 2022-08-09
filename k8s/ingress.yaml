@@ -1,18 +1,12 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: v1
+kind: Service
 metadata:
-  name: client-service-gql-ingress
-  labels:
-    app: client-service-gql
-    environment: dev
+  name: client-service-lb
 spec:
-  rules:
-  - http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: client-service-gql
-            port: 
-              number: 8080
+  type: LoadBalancer
+  selector:
+    app: client-service-gql
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

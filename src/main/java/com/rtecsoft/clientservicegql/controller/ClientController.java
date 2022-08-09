@@ -29,6 +29,7 @@ public class ClientController {
     @SchemaMapping(typeName = "Query", value="allClients")
     @CircuitBreaker(name = "client-service", fallbackMethod = "allClientsFallback")
     public List<Client> allClients() {
+        log.info("Calling allClient()");
         return clientService.findAll();
     }
 

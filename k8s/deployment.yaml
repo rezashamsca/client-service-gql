@@ -6,6 +6,7 @@ metadata:
     app: client-service-gql
     environment: dev
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: client-service-gql
@@ -17,7 +18,7 @@ spec:
     spec:
       containers:
         - name: client-service-gql
-          image: rtecsoft/client-service-gql:0.0.4
+          image: rtecsoft/client-service-gql:0.0.5
           imagePullPolicy: IfNotPresent
           resources: {}
 #            limits:
@@ -34,20 +35,3 @@ spec:
               value: yourStrong(!)Password
           ports:
             - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: client-service-gql
-  labels:
-    app: client-service-gql
-    environment: dev
-spec:
-  selector:
-    app: client-service-gql
-  ports:
-    - name: 8080-tcp
-      protocol: TCP
-      port: 8080
-      targetPort: 8080
-  type: ClusterIP
